@@ -1,6 +1,14 @@
 # This file is maintained automatically by "terraform init".
 # Manual edits may be lost in future updates.
 
+provider "registry.terraform.io/hashicorp/external" {
+  version     = "2.0.0"
+  constraints = "2.0.0"
+  hashes = [
+    "h1:tDNPAtzmOKv12jR7rCS9KyLXdAlAp+dfzv0HkJuho4U=",
+  ]
+}
+
 provider "registry.terraform.io/sacloud/sakuracloud" {
   version     = "2.7.1"
   constraints = "2.7.1"
