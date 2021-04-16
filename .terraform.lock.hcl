@@ -9,6 +9,14 @@ provider "registry.terraform.io/hashicorp/external" {
   ]
 }
 
+provider "registry.terraform.io/hashicorp/random" {
+  version     = "3.0.0"
+  constraints = "3.0.0"
+  hashes = [
+    "h1:tKkuAwtF7Ym8IC21execKx4phygxTrPhuFGryIl/a7o=",
+  ]
+}
+
 provider "registry.terraform.io/sacloud/sakuracloud" {
   version     = "2.7.1"
   constraints = "2.7.1"
