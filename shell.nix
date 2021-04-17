@@ -1,10 +1,6 @@
 { pkgs ? import nix/pkgs.nix }:
 let
-  terraform = pkgs.terraform_0_14.withPlugins (plugins: [
-    plugins.sakuracloud
-    plugins.external
-    plugins.random
-  ]);
+  terraform = import ./nix/terraform.nix { inherit pkgs; };
 in
 pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
@@ -16,6 +12,8 @@ pkgs.mkShell {
     cacert
     libguestfs
     mktemp
+    nixpkgs-fmt
+    shellcheck
   ];
   LIBGUESTFS_PATH = "${pkgs.libguestfs-appliance}";
 }
