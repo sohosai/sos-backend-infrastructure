@@ -2,7 +2,7 @@
 
 buildGoModule rec {
   pname = "terraform-provider-sakuracloud";
-  version = "2.7.1";
+  version = "2.8.3";
 
   subPackages = [ "." ];
 
@@ -10,7 +10,7 @@ buildGoModule rec {
     owner = "sacloud";
     repo = pname;
     rev = "v${version}";
-    sha256 = "04czwq1ks29pnranxjlms3dbbrzrcx90vw8f6916yb7c2xnas53j";
+    sha256 = "04v8bh715lhzfx1mwfaqnrvnh73h37ih258wwj2mygpkwkzkimzn";
   };
 
   vendorSha256 = null;

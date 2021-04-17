@@ -18,9 +18,9 @@ provider "registry.terraform.io/hashicorp/random" {
 }
 
 provider "registry.terraform.io/sacloud/sakuracloud" {
-  version     = "2.7.1"
-  constraints = "2.7.1"
+  version     = "2.8.3"
+  constraints = "2.8.3"
   hashes = [
-    "h1:imB27kl+3r41Lo5Imd4KRGOoqDYaAf+qXeeWSW2p4lw=",
+    "h1:6JeD7lUoXfA6noHY1bnSKJRmNMtTAUsuBaaHVIOyxl4=",
   ]
 }

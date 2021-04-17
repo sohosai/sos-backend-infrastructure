@@ -7,7 +7,7 @@ terraform {
       source  = "hashicorp/random"
     }
     sakuracloud = {
-      version = "2.7.1"
+      version = "2.8.3"
       source  = "sacloud/sakuracloud"
     }
   }
