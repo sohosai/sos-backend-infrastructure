@@ -124,11 +124,13 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: "${{ steps.get-pull-request.outputs.merge_commit_sha }}"
-      - uses: actions/download-artifact@v2
+      - uses: ./.github/actions/download-artifact
         id: download-tfapply
         continue-on-error: true
         with:
           name: "tfapply-${{ steps.get-pull-request.outputs.merge_commit_sha }}"
+          workflow: apply.yml
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
       - uses: actions/github-script@v3
         if: steps.download-tfapply.outcome == 'failure'
         env:
