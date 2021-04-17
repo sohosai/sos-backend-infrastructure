@@ -7,5 +7,7 @@ terraform {
       source  = "sacloud/sakuracloud"
     }
   }
+
+  backend "remote" {}
 }
 

@@ -1,0 +1,36 @@
+name: Get a pull request data
+inputs:
+  pull-number:
+    description: "The pull request number to get."
+    required: true
+  github-token:
+    description: "the GITHUB_TOKEN secret."
+    required: true
+outputs:
+  base_ref:
+    description: "base_ref"
+    value: ${{ fromJSON(steps.get-pull-request.outputs.result).base.ref }}
+  merge_commit_sha:
+    description: "merge_commit_sha"
+    value: ${{ fromJSON(steps.get-pull-request.outputs.result).merge_commit_sha }}
+  mergeable:
+    description: "mergeable"
+    value: ${{ fromJSON(steps.get-pull-request.outputs.result).mergeable }}
+runs:
+  using: "composite"
+  steps:
+    - env:
+        PULL_NUMBER: "${{ inputs.pull-number }}"
+        GITHUB_TOKEN: "${{ inputs.github-token }}"
+      shell: bash --noprofile --norc -euo pipefail {0}
+      id: get-pull-request
+      run: |
+        output=$(
+          curl -fsS -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/$PULL_NUMBER"
+        )
+        output=${output//'%'/'%25'}
+        output=${output//$'\n'/'%0A'}
+        output=${output//$'\r'/'%0D'}
+        echo "::set-output name=result::$output"

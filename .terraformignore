@@ -1,0 +1,4 @@
+result
+result-*
+modules/sakuracloud_archive_nixos_custom/.built_image/
+.envrc

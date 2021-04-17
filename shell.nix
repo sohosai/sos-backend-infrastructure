@@ -8,8 +8,6 @@ pkgs.mkShell {
     util-linux
     coreutils
     jq
-    nix
-    cacert
     libguestfs
     mktemp
     nixpkgs-fmt
