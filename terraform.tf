@@ -6,6 +6,10 @@ terraform {
       version = "2.8.3"
       source  = "sacloud/sakuracloud"
     }
+    cloudflare = {
+      version = "2.7.0"
+      source  = "nixpkgs/cloudflare"
+    }
   }
 
   backend "remote" {}

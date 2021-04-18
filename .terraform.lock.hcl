@@ -17,6 +17,14 @@ provider "registry.terraform.io/hashicorp/random" {
   ]
 }
 
+provider "registry.terraform.io/nixpkgs/cloudflare" {
+  version     = "2.7.0"
+  constraints = "2.7.0"
+  hashes = [
+    "h1:OTPscjvDI88Nz67ptxdFtE+8QW5A93laS2UYVsrHAuM=",
+  ]
+}
+
 provider "registry.terraform.io/sacloud/sakuracloud" {
   version     = "2.8.3"
   constraints = "2.8.3"
