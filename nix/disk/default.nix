@@ -2,6 +2,7 @@
 , configFile ? null
 , additionalImports ? [ ]
 , contents ? [ ]
+, useKvm ? true
 }:
 let
   configuration = { ... }: {
@@ -15,7 +16,11 @@ let
   };
 
   system = "x86_64-linux";
-
   machine = import "${pkgs.path}/nixos" { inherit system configuration; };
+  image = machine.config.system.build.sakuracloudServerImage;
 in
-machine.config.system.build.sakuracloudServerImage
+if useKvm then image else
+  with pkgs.lib;
+  overrideDerivation image (oldAttrs: {
+    requiredSystemFeatures = remove "kvm" oldAttrs.requiredSystemFeatures;
+  })
