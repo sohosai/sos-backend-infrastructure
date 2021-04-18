@@ -1,0 +1,70 @@
+on: [push, pull_request]
+
+name: CI
+
+env:
+  CACHIX_NAME: sos21-backend-infrastructure
+  # avoid caching libguestfs-appliance because it's large and built from binary distribution
+  CACHIX_PUSH_FILTER: libguestfs-appliance
+
+jobs:
+  nixpkgs-fmt:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cachix/install-nix-action@v12
+      - uses: cachix/cachix-action@v10
+        with:
+          name: "${{ env.CACHIX_NAME }}"
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          pushFilter: "${{ env.CACHIX_PUSH_FILTER }}"
+      - run: nix-env -f ./nix/pkgs.nix -iA nixpkgs-fmt
+      - run: nixpkgs-fmt --check $(find . -name '*.nix')
+  shellcheck:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cachix/install-nix-action@v12
+      - uses: cachix/cachix-action@v10
+        with:
+          name: "${{ env.CACHIX_NAME }}"
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          pushFilter: "${{ env.CACHIX_PUSH_FILTER }}"
+      - run: nix-env -f ./nix/pkgs.nix -iA shellcheck
+      - run: shellcheck $(find . -name '*.sh')
+  terraform-fmt:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cachix/install-nix-action@v12
+      - uses: cachix/cachix-action@v10
+        with:
+          name: "${{ env.CACHIX_NAME }}"
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          pushFilter: "${{ env.CACHIX_PUSH_FILTER }}"
+      - run: nix-env -f ./nix/terraform.nix -i
+      - run: terraform fmt -check -recursive
+  terraform-validate:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cachix/install-nix-action@v12
+      - uses: cachix/cachix-action@v10
+        with:
+          name: "${{ env.CACHIX_NAME }}"
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          pushFilter: "${{ env.CACHIX_PUSH_FILTER }}"
+      - run: nix-env -f ./nix/terraform.nix -i
+      - run: terraform init -backend=false
+      - run: terraform validate
+  build-disk:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cachix/install-nix-action@v12
+      - uses: cachix/cachix-action@v10
+        with:
+          name: "${{ env.CACHIX_NAME }}"
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          pushFilter: "${{ env.CACHIX_PUSH_FILTER }}"
+      - run: nix-build nix/disk --arg useKvm false
