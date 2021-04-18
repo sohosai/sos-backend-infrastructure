@@ -57,3 +57,14 @@ jobs:
       - run: nix-env -f ./nix/terraform.nix -i
       - run: terraform init -backend=false
       - run: terraform validate
+  build-disk:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cachix/install-nix-action@v12
+      - uses: cachix/cachix-action@v10
+        with:
+          name: "${{ env.CACHIX_NAME }}"
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          pushFilter: "${{ env.CACHIX_PUSH_FILTER }}"
+      - run: nix-build nix/disk --arg useKvm false
