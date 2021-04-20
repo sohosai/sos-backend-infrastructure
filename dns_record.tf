@@ -5,7 +5,7 @@ resource "cloudflare_record" "beta" {
   type    = "A"
   # value of 1 is 'automatic'
   ttl     = 1
-  proxied = true
+  proxied = false
 }
 
 resource "cloudflare_record" "nightly" {
@@ -15,5 +15,5 @@ resource "cloudflare_record" "nightly" {
   type    = "A"
   # value of 1 is 'automatic'
   ttl     = 1
-  proxied = true
+  proxied = false
 }
