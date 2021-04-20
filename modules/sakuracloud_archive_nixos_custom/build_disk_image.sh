@@ -125,10 +125,14 @@ function main() {
     chmod 400 "$output"
   fi
 
+  local md5
+  md5=$(md5sum "$output" | cut -d' ' -f1)
+
   cat << EOS
   {
     "id": "$id",
-    "output_relative": "$output_relative"
+    "output_relative": "$output_relative",
+    "md5": "$md5"
   }
 EOS
 }

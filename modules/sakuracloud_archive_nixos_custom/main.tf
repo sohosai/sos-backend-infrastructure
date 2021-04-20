@@ -13,6 +13,7 @@ resource "sakuracloud_archive" "nixos" {
   name         = var.name
   description  = data.external.build_disk_image.result.id
   archive_file = "${path.module}/${data.external.build_disk_image.result.output_relative}"
+  hash         = data.external.build_disk_image.result.md5
   zone         = var.zone
   tags         = var.tags
 }
