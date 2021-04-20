@@ -12,20 +12,14 @@ function build_nixos_image() {
   local -r nixos_config=$1
   local -r contents_json=$2
 
-  local use_kvm
-  if [ "${CI:-false}" = "true" ]; then
-    1>&2 echo "disable kvm because this is on CI"
-    use_kvm=false
-  else
-    use_kvm=true
-  fi
-
+  # We can't use kvm even in local (non-CI) environment
+  # because this changes output hash
   local out_path
   out_path=$(
     nix-build "$MODULE_PATH/disk_image.nix" \
       --argstr configFileText "$nixos_config" \
       --argstr contentTextsJson "$contents_json" \
-      --arg useKvm "$use_kvm" \
+      --arg useKvm "false" \
       --show-trace
   )
 
@@ -131,10 +125,14 @@ function main() {
     chmod 400 "$output"
   fi
 
+  local md5
+  md5=$(md5sum "$output" | cut -d' ' -f1)
+
   cat << EOS
   {
     "id": "$id",
-    "output_relative": "$output_relative"
+    "output_relative": "$output_relative",
+    "md5": "$md5"
   }
 EOS
 }

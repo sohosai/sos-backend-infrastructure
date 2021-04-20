@@ -70,6 +70,8 @@ jobs:
           TF_IN_AUTOMATION: true
           TF_VAR_sakuracloud_access_token: "${{ secrets.SAKURACLOUD_ACCESS_TOKEN }}"
           TF_VAR_sakuracloud_access_token_secret: "${{ secrets.SAKURACLOUD_ACCESS_TOKEN_SECRET }}"
+          TF_VAR_cloudflare_api_token: "${{ secrets.CLOUDFLARE_API_TOKEN }}"
+          TF_VAR_cloudflare_zone_id: "${{ secrets.CLOUDFLARE_ZONE_ID }}"
           TF_VAR_ssh_public_key: "${{ secrets.SSH_PUBLIC_KEY }}"
       - uses: actions/upload-artifact@v2
         if: steps.plan.outcome == 'success'
@@ -188,6 +190,8 @@ jobs:
           TF_IN_AUTOMATION: true
           TF_VAR_sakuracloud_access_token: "${{ secrets.SAKURACLOUD_ACCESS_TOKEN }}"
           TF_VAR_sakuracloud_access_token_secret: "${{ secrets.SAKURACLOUD_ACCESS_TOKEN_SECRET }}"
+          TF_VAR_cloudflare_api_token: "${{ secrets.CLOUDFLARE_API_TOKEN }}"
+          TF_VAR_cloudflare_zone_id: "${{ secrets.CLOUDFLARE_ZONE_ID }}"
           TF_VAR_ssh_public_key: "${{ secrets.SSH_PUBLIC_KEY }}"
       - uses: actions/github-script@v3
         env:
