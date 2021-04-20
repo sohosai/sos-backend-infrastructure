@@ -12,6 +12,7 @@ pkgs.mkShell {
     mktemp
     nixpkgs-fmt
     shellcheck
+    bash
   ];
   LIBGUESTFS_PATH = "${pkgs.libguestfs-appliance}";
 }
