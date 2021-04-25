@@ -9,6 +9,11 @@ resource "sakuracloud_packet_filter" "external" {
 
   expression {
     protocol         = "tcp"
+    destination_port = "443"
+  }
+
+  expression {
+    protocol         = "tcp"
     destination_port = "22"
   }
 
