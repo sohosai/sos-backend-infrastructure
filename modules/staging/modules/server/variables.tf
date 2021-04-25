@@ -1,4 +1,12 @@
-variable "ssh_public_keys" {
+variable "user_ssh_public_keys" {
+  type = list(string)
+}
+
+variable "user_hashed_password" {
+  type = string
+}
+
+variable "root_ssh_public_keys" {
   type = list(string)
 }
 

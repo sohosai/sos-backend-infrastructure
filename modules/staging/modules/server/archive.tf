@@ -7,9 +7,26 @@ locals {
   nixos_config = <<-EOT
   { ... }:
   {
-    users.users.root.openssh.authorizedKeys.keys = [
-      ${join(" ", formatlist("\"%s\"", var.ssh_public_keys))}
-    ];
+    services.openssh = {
+      permitRootLogin = "prohibit-password";
+      passwordAuthentication = false;
+      challengeResponseAuthentication = false;
+    };
+
+    users.users.root = {
+      hashedPassword = null;
+      openssh.authorizedKeys.keys = [
+        ${join(" ", formatlist("\"%s\"", var.root_ssh_public_keys))}
+      ];
+    };
+    users.users.sos21-admin = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
+      hashedPassword = "${var.user_hashed_password}";
+      openssh.authorizedKeys.keys = [
+        ${join(" ", formatlist("\"%s\"", var.user_ssh_public_keys))}
+      ];
+    };
 
     networking.dhcpcd.enable = false;
     networking.nameservers = [
