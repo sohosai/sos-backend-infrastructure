@@ -14,8 +14,8 @@ variable "cloudflare_zone_id" {
   type = string
 }
 
-variable "ssh_public_key" {
-  type = string
+variable "ssh_public_keys" {
+  type = list(string)
 }
 
 variable "zone" {

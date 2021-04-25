@@ -8,7 +8,7 @@ locals {
   { ... }:
   {
     users.users.root.openssh.authorizedKeys.keys = [
-      "${var.ssh_public_key}"
+      ${join(" ", formatlist("\"%s\"", var.ssh_public_keys))}
     ];
 
     networking.dhcpcd.enable = false;

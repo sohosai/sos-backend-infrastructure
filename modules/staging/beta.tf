@@ -14,7 +14,7 @@ module "beta" {
   router_id         = var.router_id
   global_ip_address = var.beta_ip_address
 
-  ssh_public_key = var.ssh_public_key
+  ssh_public_keys = var.ssh_public_keys
   secret_contents = [
     {
       target  = "/var/keys/database-username"
