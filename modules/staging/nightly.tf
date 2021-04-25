@@ -14,7 +14,10 @@ module "nightly" {
   router_id         = var.router_id
   global_ip_address = var.nightly_ip_address
 
-  ssh_public_key = var.ssh_public_key
+  root_ssh_public_keys = var.root_ssh_public_keys
+  user_ssh_public_keys = var.user_ssh_public_keys
+  user_hashed_password = var.user_hashed_password
+
   secret_contents = [
     {
       target  = "/var/keys/database-username"
