@@ -25,6 +25,7 @@ function main() {
   workdir=$(mktemp -d)
 
   scp "${ssh_opts[@]}" "$remote_host:/etc/nixos/sakuracloud-server-config.nix" "$workdir/sakuracloud-server-config.nix"
+  scp "${ssh_opts[@]}" "$remote_host:/etc/nixos/sos21-staging-server.nix" "$workdir/sos21-staging-server.nix"
   scp "${ssh_opts[@]}" "$remote_host:/etc/nixos/base-config.nix" "$workdir/base-config.nix"
 
   local out_path
@@ -32,6 +33,7 @@ function main() {
     nix-build "$PROJECT/nix/system.nix" \
       --arg imports "\
         [ $workdir/sakuracloud-server-config.nix  \
+          $workdir/sos21-staging-server.nix       \
           $workdir/base-config.nix                \
           ${configurations[*]}                    \
         ]"

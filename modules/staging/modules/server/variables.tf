@@ -1,3 +1,7 @@
+variable "user_name" {
+  type = string
+}
+
 variable "user_ssh_public_keys" {
   type = list(string)
 }
