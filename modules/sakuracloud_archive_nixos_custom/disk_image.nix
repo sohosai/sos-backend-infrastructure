@@ -1,6 +1,8 @@
 { pkgs ? import ../../nix/pkgs.nix
 , useKvm ? true
 , configFileText
+, rootPath
+, importsJson
 , contentTextsJson
 }:
 let
@@ -14,8 +16,10 @@ let
     })
     (builtins.fromJSON contentTextsJson);
   configFile = pkgs.writeText "configuration.nix" configFileText;
+  toImportPath = p: rootPath + ("/" + p);
 in
 import ../../nix/disk {
   inherit pkgs contents useKvm;
-  additionalImports = [ (builtins.toPath configFile) ];
+  additionalImports = [ (builtins.toPath configFile) ]
+    ++ map toImportPath (builtins.fromJSON importsJson);
 }

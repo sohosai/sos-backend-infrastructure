@@ -4,13 +4,15 @@ set -euo pipefail
 
 # images are stored under $MODULE_PATH/$OUT_DIR
 readonly MODULE_PATH=$(dirname "${BASH_SOURCE[0]}")
+readonly ROOT_PATH=$(realpath "$MODULE_PATH/../../")
 readonly OUT_DIR=.built_image
 
 function build_nixos_image() {
   set -euo pipefail
 
   local -r nixos_config=$1
-  local -r contents_json=$2
+  local -r imports_json=$2
+  local -r contents_json=$3
 
   # We can't use kvm even in local (non-CI) environment
   # because this changes output hash
@@ -18,6 +20,8 @@ function build_nixos_image() {
   out_path=$(
     nix-build "$MODULE_PATH/disk_image.nix" \
       --argstr configFileText "$nixos_config" \
+      --arg rootPath "$ROOT_PATH" \
+      --argstr importsJson "$imports_json" \
       --argstr contentTextsJson "$contents_json" \
       --arg useKvm "false" \
       --show-trace
@@ -105,11 +109,12 @@ function main() {
   local query_json nixos_config contents_json secret_contents_json
   query_json=$(cat)
   nixos_config=$(jq .nixos_config -er <<< "$query_json")
+  imports_json=$(jq .imports -er <<< "$query_json")
   contents_json=$(jq .contents -er <<< "$query_json")
   secret_contents_json=$(jq .secret_contents -er <<< "$query_json")
 
   local nixos_image id output
-  nixos_image=$(build_nixos_image "$nixos_config" "$contents_json")
+  nixos_image=$(build_nixos_image "$nixos_config" "$imports_json" "$contents_json")
   id=$(calculate_id "$nixos_image" "$secret_contents_json")
 
   local -r output_relative=${OUT_DIR%/}/${id}.img
