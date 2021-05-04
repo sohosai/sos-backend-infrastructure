@@ -17,6 +17,7 @@ module "nightly" {
   root_ssh_public_keys = var.root_ssh_public_keys
   user_ssh_public_keys = var.user_ssh_public_keys
   user_hashed_password = var.user_hashed_password
+  user_name            = var.user_name
 
   secret_contents = [
     {
