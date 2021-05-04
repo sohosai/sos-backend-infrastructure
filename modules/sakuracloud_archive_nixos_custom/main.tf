@@ -4,6 +4,7 @@ data "external" "build_disk_image" {
 
   query = {
     nixos_config    = var.nixos_config
+    imports         = jsonencode(var.imports)
     contents        = jsonencode(var.contents)
     secret_contents = jsonencode(var.secret_contents)
   }
