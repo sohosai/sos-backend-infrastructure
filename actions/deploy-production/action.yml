@@ -1,0 +1,25 @@
+name: Deploy to the production environment
+inputs:
+  configurations:
+    description: "NixOS configuration files"
+    required: true
+  target:
+    description: "Target remote machine."
+    required: true
+  ssh_private_key:
+    description: "SSH private key file location."
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: deploy
+      shell: bash --noprofile --norc -euo pipefail {0}
+      env:
+        # actions/runner#665
+        INPUT_CONFIGURATIONS: "${{ inputs.configurations }}"
+        INPUT_TARGET: "${{ inputs.target }}"
+        INPUT_SSH_PRIVATE_KEY: "${{ inputs.ssh_private_key }}"
+      run: |
+        readonly -a configurations=( $INPUT_CONFIGURATIONS )
+        "${{ github.action_path }}/../../scripts/deploy_production.sh" \
+          "$INPUT_TARGET" "$INPUT_SSH_PRIVATE_KEY" "${configurations[@]}"
