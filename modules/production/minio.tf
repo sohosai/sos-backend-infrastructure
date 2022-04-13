@@ -1,6 +1,6 @@
 module "minio" {
   source         = "../minio"
-  tags           = concat(var.tags, ["sos21_minio"])
+  tags           = concat(var.tags, ["sos22_minio"])
   zone           = var.zone
   switch_id      = sakuracloud_switch.internal.id
   switch_network = local.internal_network
@@ -14,8 +14,8 @@ module "minio" {
 }
 
 resource "sakuracloud_auto_backup" "minio_auto_backup" {
-  name = "sos21_production_minio_backup"
-  tags = concat(var.tags, ["sos21_auto_backup"])
+  name = "sos22_production_minio_backup"
+  tags = concat(var.tags, ["sos22_auto_backup"])
   zone = var.zone
 
   disk_id        = module.minio.data_disk_id

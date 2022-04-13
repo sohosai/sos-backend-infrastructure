@@ -1,6 +1,6 @@
 # 雙峰祭オンラインシステム バックエンド インフラ
 
-[![CI](https://github.com/sohosai/sos21-backend-infrastructure/actions/workflows/ci.yml/badge.svg)](https://github.com/sohosai/sos21-backend-infrastructure/actions/workflows/ci.yml)
+[![CI](https://github.com/sohosai/sos22-backend-infrastructure/actions/workflows/ci.yml/badge.svg)](https://github.com/sohosai/sos22-backend-infrastructure/actions/workflows/ci.yml)
 
 ## Requirements
 
