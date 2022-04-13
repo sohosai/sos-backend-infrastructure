@@ -13,8 +13,8 @@ terraform {
   }
 
   backend "remote" {
-  	organization = "sohosai"
-    workspaces{
+    organization = "sohosai"
+    workspaces {
       name = "sos21-backend-infrastructure"
     }
   }
