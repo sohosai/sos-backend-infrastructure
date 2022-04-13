@@ -1,7 +1,7 @@
 module "beta" {
   source = "./modules/server"
 
-  tags   = concat(var.tags, ["sos21_beta"])
+  tags   = concat(var.tags, ["sos22_beta"])
   zone   = var.zone
   core   = 2
   memory = 2

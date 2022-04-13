@@ -1,5 +1,5 @@
 resource "sakuracloud_packet_filter" "switch" {
-  name = "sos21_minio_filter"
+  name = "sos22_minio_filter"
   zone = var.zone
 
   expression {

@@ -1,6 +1,6 @@
 module "database" {
   source         = "../database"
-  tags           = concat(var.tags, ["sos21_database"])
+  tags           = concat(var.tags, ["sos22_database"])
   zone           = var.zone
   switch_id      = sakuracloud_switch.internal.id
   switch_network = local.internal_network
@@ -14,8 +14,8 @@ module "database" {
 }
 
 resource "sakuracloud_auto_backup" "database_auto_backup" {
-  name = "sos21_production_database_backup"
-  tags = concat(var.tags, ["sos21_auto_backup"])
+  name = "2_production_database_backup"
+  tags = concat(var.tags, ["sos22_auto_backup"])
   zone = var.zone
 
   disk_id        = module.database.data_disk_id

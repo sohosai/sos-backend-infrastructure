@@ -1,13 +1,13 @@
 resource "sakuracloud_disk" "data_disk" {
-  name = "sos21_minio_data_disk"
-  tags = concat(var.tags, ["sos21_minio_data_disk"])
+  name = "sos22_minio_data_disk"
+  tags = concat(var.tags, ["sos22_minio_data_disk"])
   zone = var.zone
   size = var.data_disk_size
 }
 
 resource "sakuracloud_disk" "disk" {
-  name              = "sos21_minio_disk"
-  tags              = concat(var.tags, ["sos21_minio_disk"])
+  name              = "sos22_minio_disk"
+  tags              = concat(var.tags, ["sos22_minio_disk"])
   zone              = var.zone
   source_archive_id = module.nixos_minio.archive_id
 }
@@ -23,8 +23,8 @@ resource "random_password" "secret_key" {
 }
 
 resource "sakuracloud_server" "minio" {
-  name   = "sos21_minio"
-  tags   = concat(var.tags, ["sos21_minio_server"])
+  name   = "sos22_minio"
+  tags   = concat(var.tags, ["sos22_minio_server"])
   disks  = [sakuracloud_disk.disk.id, sakuracloud_disk.data_disk.id]
   zone   = var.zone
   core   = var.core
