@@ -1,6 +1,6 @@
 module "database" {
   source         = "../database"
-  tags           = concat(var.tags, ["sos21_database"])
+  tags           = concat(var.tags, ["sos22_database"])
   zone           = var.zone
   switch_id      = sakuracloud_switch.internal.id
   switch_network = local.internal_network

@@ -5,15 +5,15 @@ locals {
 
 module "nixos_minio" {
   source = "../sakuracloud_archive_nixos_custom"
-  name   = "sos21_minio_nixos"
-  tags   = concat(var.tags, ["sos21_archive_nixos_minio"])
+  name   = "sos22_minio_nixos"
+  tags   = concat(var.tags, ["sos22_archive_nixos_minio"])
   zone   = var.zone
 
-  imports      = ["${path.module}/sos21-minio.nix"]
+  imports      = ["${path.module}/sos22-minio.nix"]
   nixos_config = <<-EOT
   { pkgs, ... }:
   {
-    sos21-minio = {
+    sos22-minio = {
       network = "${var.switch_network}";
       ipAddress = "${var.ip_address}";
       prefixLength = ${var.switch_netmask};
