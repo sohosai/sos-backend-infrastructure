@@ -1,6 +1,6 @@
 module "minio" {
   source         = "../minio"
-  tags           = concat(var.tags, ["sos21_minio"])
+  tags           = concat(var.tags, ["sos22_minio"])
   zone           = var.zone
   switch_id      = sakuracloud_switch.internal.id
   switch_network = local.internal_network

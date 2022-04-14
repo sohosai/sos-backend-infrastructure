@@ -2,11 +2,11 @@
 
 with lib;
 let
-  cfg = config.sos21-minio;
+  cfg = config.sos22-minio;
 in
 {
   options = {
-    sos21-minio = {
+    sos22-minio = {
       network = mkOption {
         type = types.str;
       };

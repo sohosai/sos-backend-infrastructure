@@ -16,7 +16,7 @@ variable "cloudflare_zone_id" {
 
 variable "user_name" {
   type    = string
-  default = "sos21-admin"
+  default = "sos22-admin"
 }
 
 variable "user_ssh_public_keys" {

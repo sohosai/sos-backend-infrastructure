@@ -1,5 +1,5 @@
 resource "sakuracloud_packet_filter" "external" {
-  name = "sos21_staging_server_external"
+  name = "sos22_staging_server_external"
   zone = var.zone
 
   expression {
