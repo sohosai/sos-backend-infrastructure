@@ -10,15 +10,15 @@ locals {
 }
 
 resource "sakuracloud_switch" "internal" {
-  name = "sos22_production_switch"
-  tags = concat(var.tags, ["sos22_switch"])
+  name = "sos23_production_switch"
+  tags = concat(var.tags, ["sos23_switch"])
   zone = var.zone
 }
 
 module "main_server" {
   source = "./modules/server"
 
-  tags   = concat(var.tags, ["sos22_main"])
+  tags   = concat(var.tags, ["sos23_main"])
   zone   = var.zone
   core   = 12
   memory = 8

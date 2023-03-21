@@ -1,13 +1,13 @@
 resource "sakuracloud_disk" "data_disk" {
-  name = "sos22_database_data_disk"
-  tags = concat(var.tags, ["sos22_database_data_disk"])
+  name = "sos23_database_data_disk"
+  tags = concat(var.tags, ["sos23_database_data_disk"])
   zone = var.zone
   size = var.data_disk_size
 }
 
 resource "sakuracloud_disk" "disk" {
-  name              = "sos22_database_disk"
-  tags              = concat(var.tags, ["sos22_database_disk"])
+  name              = "sos23_database_disk"
+  tags              = concat(var.tags, ["sos23_database_disk"])
   zone              = var.zone
   source_archive_id = module.nixos_database.archive_id
 }
@@ -23,8 +23,8 @@ resource "random_password" "password" {
 }
 
 resource "sakuracloud_server" "database" {
-  name   = "sos22_database"
-  tags   = concat(var.tags, ["sos22_database_server"])
+  name   = "sos23_database"
+  tags   = concat(var.tags, ["sos23_database_server"])
   disks  = [sakuracloud_disk.disk.id, sakuracloud_disk.data_disk.id]
   zone   = var.zone
   core   = var.core

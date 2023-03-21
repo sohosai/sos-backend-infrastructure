@@ -4,15 +4,15 @@ locals {
 
 module "nixos_database" {
   source = "../sakuracloud_archive_nixos_custom"
-  name   = "sos22_database_nixos"
-  tags   = concat(var.tags, ["sos22_archive_nixos_database"])
+  name   = "sos23_database_nixos"
+  tags   = concat(var.tags, ["sos23_archive_nixos_database"])
   zone   = var.zone
 
-  imports      = ["${path.module}/sos22-database.nix"]
+  imports      = ["${path.module}/sos23-database.nix"]
   nixos_config = <<-EOT
   { pkgs, ... }:
   {
-    sos22-database = {
+    sos23-database = {
       network = "${var.switch_network}";
       ipAddress = "${var.ip_address}";
       prefixLength = ${var.switch_netmask};

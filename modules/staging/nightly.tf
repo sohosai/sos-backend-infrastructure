@@ -1,7 +1,7 @@
 module "nightly" {
   source = "./modules/server"
 
-  tags   = concat(var.tags, ["sos22_nightly"])
+  tags   = concat(var.tags, ["sos23_nightly"])
   zone   = var.zone
   core   = 1
   memory = 1
