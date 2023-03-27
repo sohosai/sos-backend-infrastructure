@@ -1,13 +1,13 @@
 terraform {
-  required_version = "0.14.8"
+  required_version = "1.4.2"
 
   required_providers {
     random = {
-      version = "3.0.0"
+      version = "3.4.3"
       source  = "hashicorp/random"
     }
     sakuracloud = {
-      version = "2.8.3"
+      version = "2.22.1"
       source  = "sacloud/sakuracloud"
     }
   }

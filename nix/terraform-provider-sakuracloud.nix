@@ -2,7 +2,7 @@
 
 buildGoModule rec {
   pname = "terraform-provider-sakuracloud";
-  version = "2.8.3";
+  version = "2.22.1";
 
   subPackages = [ "." ];
 
