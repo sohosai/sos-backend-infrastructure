@@ -7,8 +7,8 @@ terraform {
       source  = "sacloud/sakuracloud"
     }
     cloudflare = {
-      version = "3.28.0"
-      source  = "nixpkgs/cloudflare"
+      version = "4.2.0"
+      source  = "cloudflare/cloudflare"
     }
   }
 
