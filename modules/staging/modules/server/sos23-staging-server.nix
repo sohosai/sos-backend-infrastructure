@@ -2,11 +2,11 @@
 
 with lib;
 let
-  cfg = config.sos22-production-server;
+  cfg = config.sos23-staging-server;
 in
 {
   options = {
-    sos22-production-server = {
+    sos23-staging-server = {
       switch = mkOption {
         type = types.submodule {
           options = {

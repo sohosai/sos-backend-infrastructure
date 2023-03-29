@@ -1,6 +1,6 @@
 module "staging" {
   source = "./modules/staging"
-  tags   = ["sos22_staging"]
+  tags   = ["sos23_staging"]
   zone   = var.zone
 
   root_ssh_public_keys = var.root_ssh_public_keys
@@ -15,7 +15,7 @@ module "staging" {
 
 module "production" {
   source = "./modules/production"
-  tags   = ["sos22_production"]
+  tags   = ["sos23_production"]
   zone   = var.zone
 
   root_ssh_public_keys = var.root_ssh_public_keys

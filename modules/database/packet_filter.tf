@@ -1,5 +1,5 @@
 resource "sakuracloud_packet_filter" "switch" {
-  name = "sos22_database_filter_switch"
+  name = "sos23_database_filter_switch"
   zone = var.zone
 
   expression {

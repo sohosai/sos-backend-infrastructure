@@ -2,11 +2,11 @@
 
 with lib;
 let
-  cfg = config.sos22-database;
+  cfg = config.sos23-database;
 in
 {
   options = {
-    sos22-database = {
+    sos23-database = {
       network = mkOption {
         type = types.str;
       };

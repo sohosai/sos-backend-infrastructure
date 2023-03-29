@@ -11,7 +11,7 @@ locals {
 }
 
 resource "sakuracloud_switch" "internal" {
-  name = "sos22_staging_switch"
-  tags = concat(var.tags, ["sos22_switch"])
+  name = "sos23_staging_switch"
+  tags = concat(var.tags, ["sos23_switch"])
   zone = var.zone
 }

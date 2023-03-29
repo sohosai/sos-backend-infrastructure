@@ -2,14 +2,17 @@
 
 set -euo pipefail
 
-readonly SSH_OPTS=(
+SSH_OPTS=(
   -o "StrictHostKeyChecking=no"
   -o "UserKnownHostsFile=/dev/null"
   -o "GlobalKnownHostsFile=/dev/null"
   -o "BatchMode=yes"
 )
-readonly SYSTEM_PROFILE=/nix/var/nix/profiles/system
-readonly PROJECT=$(realpath "$(dirname "${BASH_SOURCE[0]}")/../")
+readonly SYSTEM_PROFILE
+SYSTEM_PROFILE=/nix/var/nix/profiles/system
+readonly SSH_OPTS
+PROJECT=$(realpath "$(dirname "${BASH_SOURCE[0]}")/../")
+readonly PROJECT
 
 function main() {
   set -euo pipefail
@@ -25,7 +28,7 @@ function main() {
   workdir=$(mktemp -d)
 
   scp "${ssh_opts[@]}" "$remote_host:/etc/nixos/sakuracloud-server-config.nix" "$workdir/sakuracloud-server-config.nix"
-  scp "${ssh_opts[@]}" "$remote_host:/etc/nixos/sos22-staging-server.nix" "$workdir/sos22-staging-server.nix"
+  scp "${ssh_opts[@]}" "$remote_host:/etc/nixos/sos23-staging-server.nix" "$workdir/sos23-staging-server.nix"
   scp "${ssh_opts[@]}" "$remote_host:/etc/nixos/base-config.nix" "$workdir/base-config.nix"
 
   local out_path
@@ -33,7 +36,7 @@ function main() {
     nix-build "$PROJECT/nix/system.nix" \
       --arg imports "\
         [ $workdir/sakuracloud-server-config.nix  \
-          $workdir/sos22-staging-server.nix       \
+          $workdir/sos23-staging-server.nix       \
           $workdir/base-config.nix                \
           ${configurations[*]}                    \
         ]"

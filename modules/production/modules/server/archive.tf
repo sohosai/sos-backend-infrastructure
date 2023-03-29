@@ -10,7 +10,7 @@ locals {
       ${join(" ", formatlist("\"%s\"", data.sakuracloud_zone.zone.dns_servers))}
     ];
 
-    sos22-production-server = {
+    sos23-production-server = {
       switch = {
         network = "${var.switch_network}";
         ipAddress = "${var.ip_address}";
@@ -39,11 +39,11 @@ locals {
 
 module "nixos_archive" {
   source = "../../../sakuracloud_archive_nixos_custom"
-  name   = "sos22_production_nixos"
-  tags   = concat(var.tags, ["sos22_archive_nixos"])
+  name   = "sos23_production_nixos"
+  tags   = concat(var.tags, ["sos23_archive_nixos"])
   zone   = var.zone
 
-  imports      = ["${path.module}/sos22-production-server.nix"]
+  imports      = ["${path.module}/sos23-production-server.nix"]
   nixos_config = local.nixos_config
 
   secret_contents = var.secret_contents
@@ -53,8 +53,8 @@ module "nixos_archive" {
       content = local.nixos_config
     },
     {
-      target  = "/etc/nixos/sos22-production-server.nix"
-      content = file("${path.module}/sos22-production-server.nix")
+      target  = "/etc/nixos/sos23-production-server.nix"
+      content = file("${path.module}/sos23-production-server.nix")
     }
   ])
 }

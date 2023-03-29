@@ -6,7 +6,7 @@ locals {
 }
 
 resource "sakuracloud_internet" "router" {
-  name       = "sos22_router"
+  name       = "sos23_router"
   zone       = var.zone
   netmask    = local.internet_netmask
   band_width = var.internet_band_width

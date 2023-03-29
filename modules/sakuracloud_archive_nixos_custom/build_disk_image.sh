@@ -3,9 +3,12 @@
 set -euo pipefail
 
 # images are stored under $MODULE_PATH/$OUT_DIR
-readonly MODULE_PATH=$(dirname "${BASH_SOURCE[0]}")
-readonly ROOT_PATH=$(realpath "$MODULE_PATH/../../")
-readonly OUT_DIR=.built_image
+MODULE_PATH=$(dirname "${BASH_SOURCE[0]}")
+readonly MODULE_PATH
+ROOT_PATH=$(realpath "$MODULE_PATH/../../")
+readonly ROOT_PATH
+OUT_DIR=.built_image
+readonly OUT_DIR
 
 function build_nixos_image() {
   set -euo pipefail
