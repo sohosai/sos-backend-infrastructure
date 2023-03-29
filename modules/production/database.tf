@@ -14,7 +14,7 @@ module "database" {
 }
 
 resource "sakuracloud_auto_backup" "database_auto_backup" {
-  name = "2_production_database_backup"
+  name = "sos23_production_database_backup"
   tags = concat(var.tags, ["sos23_auto_backup"])
   zone = var.zone
 
