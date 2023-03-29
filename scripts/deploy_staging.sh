@@ -2,14 +2,17 @@
 
 set -euo pipefail
 
-readonly SSH_OPTS=(
+SSH_OPTS=(
   -o "StrictHostKeyChecking=no"
   -o "UserKnownHostsFile=/dev/null"
   -o "GlobalKnownHostsFile=/dev/null"
   -o "BatchMode=yes"
 )
-readonly SYSTEM_PROFILE=/nix/var/nix/profiles/system
-readonly PROJECT=$(realpath "$(dirname "${BASH_SOURCE[0]}")/../")
+readonly SYSTEM_PROFILE
+SYSTEM_PROFILE=/nix/var/nix/profiles/system
+readonly SSH_OPTS
+PROJECT=$(realpath "$(dirname "${BASH_SOURCE[0]}")/../")
+readonly PROJECT
 
 function main() {
   set -euo pipefail
