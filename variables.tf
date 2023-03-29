@@ -33,7 +33,7 @@ variable "root_ssh_public_keys" {
 
 variable "zone" {
   type    = string
-  default = "is1a"
+  default = "tk1b"
 }
 
 variable "internet_band_width" {
