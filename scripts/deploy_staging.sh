@@ -8,9 +8,9 @@ SSH_OPTS=(
   -o "GlobalKnownHostsFile=/dev/null"
   -o "BatchMode=yes"
 )
-readonly SYSTEM_PROFILE
-SYSTEM_PROFILE=/nix/var/nix/profiles/system
 readonly SSH_OPTS
+SYSTEM_PROFILE=/nix/var/nix/profiles/system
+readonly SYSTEM_PROFILE
 PROJECT=$(realpath "$(dirname "${BASH_SOURCE[0]}")/../")
 readonly PROJECT
 
